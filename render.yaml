@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: dongnai-check-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /

@@ -15,6 +15,8 @@ import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import { spinCategories } from "../data/spinFoods";
 
+const apiBaseUrl = import.meta.env.VITE_API_URL || "/api";
+
 function Places() {
 
   const defaultLocation = {
@@ -117,7 +119,7 @@ function Places() {
       try {
 
         const response = await axios.get(
-          "/api/places",
+          `${apiBaseUrl}/places`,
           {
             params: {
               category,

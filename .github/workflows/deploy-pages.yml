@@ -35,6 +35,8 @@ jobs:
       - name: Build
         working-directory: frontend
         run: npm run build
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
 
       - name: Support client-side routes
         run: cp frontend/dist/index.html frontend/dist/404.html
