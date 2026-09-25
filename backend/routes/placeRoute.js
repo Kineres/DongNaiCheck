@@ -240,13 +240,15 @@ router.get("/", async (req, res) => {
       });
     }
 
-    const crawledPlaces = await runCrawler(
-      userLatitude,
-      userLongitude,
-      dish,
-      category,
-      cuisine
-    );
+    const crawledPlaces = process.env.ENABLE_CRAWLER === "true"
+      ? await runCrawler(
+          userLatitude,
+          userLongitude,
+          dish,
+          category,
+          cuisine
+        )
+      : places;
 
     const nearbyPlaces = crawledPlaces
       .filter(place => !category || place.category === category)
