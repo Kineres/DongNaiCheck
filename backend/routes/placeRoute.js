@@ -240,7 +240,10 @@ router.get("/", async (req, res) => {
       });
     }
 
-    const crawledPlaces = process.env.ENABLE_CRAWLER === "true"
+    const shouldCrawl = process.env.ENABLE_CRAWLER === "true"
+      || (process.env.NODE_ENV !== "production" && process.env.ENABLE_CRAWLER !== "false");
+
+    const crawledPlaces = shouldCrawl
       ? await runCrawler(
           userLatitude,
           userLongitude,
